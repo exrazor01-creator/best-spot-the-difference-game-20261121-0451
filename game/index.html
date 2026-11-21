@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Scenes — Spot the Difference</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">◐</span>
+      <div>
+        <h1>Twin Scenes</h1>
+        <p class="tagline">Spot the Difference</p>
+      </div>
+    </div>
+    <div class="meters">
+      <div class="meter"><span class="meter-label">Scene</span><strong id="hud-scene">Sunny Harbor</strong></div>
+      <div class="meter"><span class="meter-label">Found</span><strong id="hud-found">0 / 7</strong></div>
+      <div class="meter"><span class="meter-label">Time</span><strong id="hud-time">2:30</strong></div>
+      <div class="meter"><span class="meter-label">Score</span><strong id="hud-score">0</strong></div>
+    </div>
+    <div class="actions">
+      <button id="btn-hint" type="button" title="Hint (H)">💡 Hint <span id="hud-hints">3</span></button>
+      <button id="btn-sound" type="button" title="Sound (M)">🔊 Sound</button>
+      <button id="btn-restart" type="button" title="Restart scene (R)">↻ Restart</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <section class="panel-wrap">
+      <h2>Left · Original</h2>
+      <canvas id="panel-left" aria-label="Original picture"></canvas>
+    </section>
+    <section class="panel-wrap">
+      <h2>Right · Spot the differences</h2>
+      <canvas id="panel-right" aria-label="Picture with differences to find"></canvas>
+    </section>
+
+    <div id="overlay-title" class="overlay">
+      <div class="card">
+        <p class="eyebrow">A spot-the-difference hunt in three scenes</p>
+        <h2>Twin Scenes</h2>
+        <p class="lede">Two pictures look the same. They are not. Find every difference —
+        <strong>21 in all</strong> across a sunny harbor, a moonlit garden and a cozy cabin —
+        before the clock runs out.</p>
+        <div class="scene-picker" role="group" aria-label="Choose a scene">
+          <button type="button" data-scene="0">☀️ Sunny Harbor <em>Easy · 7 to find</em></button>
+          <button type="button" data-scene="1">🌙 Moonlit Garden <em>Medium · 7 to find</em></button>
+          <button type="button" data-scene="2">❄️ Cozy Cabin <em>Hard · 7 to find</em></button>
+        </div>
+        <button id="btn-play" type="button" class="primary">▶ Start the hunt</button>
+        <p class="keys">Click a difference on either picture · <kbd>H</kbd> hint · <kbd>M</kbd> sound ·
+        <kbd>R</kbd> restart · <kbd>1</kbd>–<kbd>3</kbd> scenes · a wrong click costs 5 seconds</p>
+      </div>
+    </div>
+
+    <div id="overlay-level-done" class="overlay hidden">
+      <div class="card">
+        <p class="eyebrow">Scene complete</p>
+        <h2 id="done-title">Harbor cleared!</h2>
+        <p id="done-stars" class="stars" aria-label="Stars earned">★★★</p>
+        <p id="done-detail" class="lede">You found all 7 differences.</p>
+        <button id="btn-next" type="button" class="primary">Next scene →</button>
+        <button id="btn-replay" type="button">Replay this scene</button>
+      </div>
+    </div>
+
+    <div id="overlay-all-done" class="overlay hidden">
+      <div class="card">
+        <p class="eyebrow">All three scenes cleared</p>
+        <h2>Master Spotter!</h2>
+        <p id="final-detail" class="lede">You found all 21 differences.</p>
+        <p id="final-best" class="lede"></p>
+        <button id="btn-again" type="button" class="primary">↻ Play again</button>
+      </div>
+    </div>
+
+    <div id="overlay-time-up" class="overlay hidden">
+      <div class="card">
+        <p class="eyebrow">Out of time</p>
+        <h2>The clock beat you</h2>
+        <p id="timeup-detail" class="lede">You found 3 of 7 differences.</p>
+        <button id="btn-retry" type="button" class="primary">↻ Try again</button>
+        <button id="btn-menu" type="button">Back to menu</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Click a difference on either picture to circle it. A wrong click costs 5 seconds; a hint costs 50 points.
+    Original art, drawn in code — no images, no network.</p>
+  </footer>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
